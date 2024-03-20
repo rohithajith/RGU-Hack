@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a5886;
+            background-image: url('pexels-mudassir-ali-2680270.jpg');
+    background-size: cover; /* This ensures the image covers the entire background */
+    background-repeat: no-repeat; /* This prevents the image from repeating */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Result</h1>
+        <p><strong>Make:</strong> {{ make }}</p>
+        <p><strong>Expected Annual Mileage:</strong> {{ miles }} miles</p>
+        <p><strong>Years of Ownership:</strong> {{ years }} years</p>
+        <p><strong>Total cost user will pay:</strong> £{{ total_cost }}</p>
+
+        <h2>Recommended Cost-Effective Cars</h2>
+        <table>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Total Cost of Ownership</th>
+            </tr>
+            {% for index, car in recommended_cars.iterrows() %}
+            <tr>
+                <td>{{ car.make }}</td>
+                <td>{{ car.model }}</td>
+                <td>£{{ car.total_cost_of_ownership }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Cars with Total Ownership Cost close to the Specified Car</h2>
+        <table>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Total Cost of Ownership</th>
+            </tr>
+            {% for index, car in close_cost_specified_car.iterrows() %}
+            <tr>
+                <td>{{ car.make }}</td>
+                <td>{{ car.model }}</td>
+                <td>£{{ car.total_cost_of_ownership }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Details of the 5 Cars with the Lowest Total Cost of Ownership</h2>
+        <table>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Total Cost of Ownership</th>
+            </tr>
+            {% for index, car in lowest_cost_cars.iterrows() %}
+            <tr>
+                <td>{{ car.make }}</td>
+                <td>{{ car.model }}</td>
+                <td>£{{ car.total_cost_of_ownership }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        
+    </div>
+</body>
+</html>
